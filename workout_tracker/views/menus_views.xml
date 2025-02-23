@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+      <!-- Root Menu -->
+    <menuitem id="workout_menu_root" name="Workout Tracker" sequence="100"/>
+
+    <!-- Main Menu -->
+    <menuitem id="workout_menu" parent="workout_menu_root" name="Workout" sequence="10"/>
+    <menuitem id="menu_workout_config" parent="workout_menu_root" name="Configuration" sequence="20"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_workout_session" name="Workout Sessions" parent="workout_menu" action="action_workout_session" sequence="10"/>
+    <menuitem id="menu_workout_type" name="Workout Types" parent="menu_workout_config" action="action_workout_type" sequence="10"/>
+    <menuitem id="menu_item_master" name="Workout Item" parent="menu_workout_config" action="action_workout_item_master" sequence="11"/>
+    
+</odoo>

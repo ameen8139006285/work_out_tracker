@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+    <record id="view_workout_session_form" model="ir.ui.view">
+    <field name="name">workout.session.form</field>
+    <field name="model">workout.session</field>
+    <field name="arch" type="xml">
+        <form string="Workout Session">
+            <sheet>
+                <!-- Header with Status & Action Buttons -->
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ongoing,completed"/>
+                    <button name="action_start_workout" type="object" string="Start Workout" 
+                            class="oe_highlight" />
+                    <button name="action_complete_workout" type="object" string="Complete Workout" 
+                            class="oe_highlight"/>
+                </header>
+
+                <!-- Main Notebook for Organized Data -->
+                <notebook>
+                    
+                    <!-- General Information Tab -->
+                    <page string="Session Details">
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="day"/>
+                            </group>
+                            <group>
+                                <field name="workout_type_id" options='{"no_open": True, "no_create": True, "no_edit":True}'/>
+                                <field name="trainer_id" options='{"no_open": True, "no_create": True, "no_edit":True}'/>
+                            </group>
+                        </group>
+                    </page>
+
+                    <!-- Exercises Tab -->
+                    <page string="Exercises">
+                        <group>
+                            <field name="exercise_ids">
+                                <tree>
+                                    <field name="item_name"/>
+                                    <field name="set_ids" widget="many2many_tags"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+
+                    <!-- Notes and Attachments -->
+                    <page string="Notes &amp; Attachments">
+                        <group>
+                            <field name="notes" widget="text"/>
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </group>
+                    </page>
+
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="view_workout_session_tree" model="ir.ui.view">
+        <field name="name">workout.session.tree</field>
+        <field name="model">workout.session</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="day"/>
+                <field name="workout_type_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_workout_session" model="ir.actions.act_window">
+        <field name="name">Workout Sessions</field>
+        <field name="res_model">workout.session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+	
+    </data>
+</odoo>
